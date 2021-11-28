@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        if (Auth::check()) {
+        if ($this->logged) {
             return redirect()->route('home');
         }
         return view('auth.login.index', ['title' => 'Login']);
@@ -55,7 +55,7 @@ class AuthController extends Controller
 
     public function create()
     {
-        if (Auth::check()) {
+        if ($this->logged) {
             return redirect()->route('home');
         }
         return view('auth.register.index', ['title' => 'Register']);

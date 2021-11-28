@@ -11,16 +11,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $logged = Auth::check();
-
-        $categories = Category::all();
         $products = Product::all();
 
         return view('home', [
             'title' => 'Home',
-            'categories' => $categories,
+            'categories' => $this->categories,
             'pproducts' => $products,
-            'logged' => $logged
+            'logged' => $this->logged
         ]);
     }
 }

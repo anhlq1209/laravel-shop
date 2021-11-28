@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-//use App\Models\Category;
-//use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ShopController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
-        return view('shop', [
-            'title' => 'Shop',
+        return view('product', [
+            'title' => 'Product',
             'categories' => $this->categories,
             'logged' => $this->logged
         ]);

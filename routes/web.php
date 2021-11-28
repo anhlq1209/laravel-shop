@@ -10,14 +10,13 @@ use App\Http\Controllers\shopdetailsController;
 use App\Http\Controllers\checkoutController;
 use Illuminate\Support\Facades\Route;
 
-// Auth
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/products',[productsController::class,'products'])->name('products');
-Route::get('/shoppingcart',[shoppingcartController::Class,'shoppingcart'])->name('shoppingcart');
-Route::get('/shopdetails',[shopdetailsController::Class,'shopdetails'])->name('shopdetails');
-Route::get('/checkout',[checkoutController::Class,'checkout'])->name('checkout');
-Route::get('/contact',[ContactController::Class,'contact'])->name('contact');
 
+// Page
+Route::get('/', [HomeController::class, 'index'])->name('home');
+// End Page
+
+
+// Auth
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login/attempt', [AuthController::class, 'attempt']);
 Route::get('/register', [AuthController::class, 'create'])->name('register');
@@ -25,6 +24,10 @@ Route::post('/register/store', [AuthController::class, 'store']);
 
 Route::get('/logout', [AuthController::class, 'destroy']);
 // End Auth
+
+
+
+
 // ADMIN
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('admin');

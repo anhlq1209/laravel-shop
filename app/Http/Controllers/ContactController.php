@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
-    public function contact() {
-        $logged = Auth::check();
+    public function index() {
 
         return view('contact', [
             'title' => 'Contact',
-            'logged' => $logged
+            'categories' => $this->categories,
+            'logged' => $this->logged
         ]);
+        
     }
 }

@@ -1,23 +1,13 @@
+@extends('main')
 
-<!DOCTYPE html>
-<html lang="zxx">
-
-<head>
-    
-    @include('layouts.head')
-
-</head>
-
-<body>
-    @include('layouts.header')
-
+@section('content')
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hero__search">
-                        <div class="hero__search__form">
+                        <div class="hero__search__form__home">
                             <form action="#">
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
@@ -432,9 +422,4 @@
         </div>
     </section>
     <!-- Latest Product Section End -->
-
-    @include('layouts.footer')
-
-</body>
-
-</html>
+@endsection
