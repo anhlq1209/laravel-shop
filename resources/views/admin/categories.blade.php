@@ -12,7 +12,7 @@
                 <div class="card-tools">
                     <a class="btn btn-success btn-sm" href="#">
                         <i class="fas fa-plus"></i>
-                        Add
+                        New category
                     </a>
                 </div>
             </div>

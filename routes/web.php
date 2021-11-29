@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\CategoyController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\LikeController as AdminLikeController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -53,7 +52,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/categories', [CategoyController::class, 'index'])->name('admin.category');
     Route::get('/products', [AdminProductController::class, 'index'])->name('admin.product');
     Route::get('/orders', [OrderController::class, 'index'])->name('admin.order');
-    Route::get('/likes', [AdminLikeController::class, 'index'])->name('admin.like');
     Route::get('/messages', [MessageController::class, 'index'])->name('admin.message');
     Route::get('/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
 });

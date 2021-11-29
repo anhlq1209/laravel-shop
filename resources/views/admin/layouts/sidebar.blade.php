@@ -43,18 +43,18 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="/admin/products" class="nav-link {{ $title === 'Products' ? 'active' : '' }}">
-						<i class="nav-icon fab fa-battle-net"></i>
-						<p>
-							Products
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
 					<a href="/admin/categories" class="nav-link {{ $title === 'Categories' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-boxes"></i>
 						<p>
 							Categories
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="/admin/products" class="nav-link {{ $title === 'Products' ? 'active' : '' }}">
+						<i class="nav-icon fab fa-battle-net"></i>
+						<p>
+							Products
 						</p>
 					</a>
 				</li>
@@ -67,15 +67,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="/admin/likes" class="nav-link {{ $title === 'Like list' ? 'active' : '' }}">
-						<i class="nav-icon far fa-heart"></i>
-						<p>
-							Like list
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="/admin/message" class="nav-link {{ $title === 'Messages' ? 'active' : '' }}">
+					<a href="/admin/messages" class="nav-link {{ $title === 'Messages' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-mail-bulk"></i>
 						<p>
 							Messages
