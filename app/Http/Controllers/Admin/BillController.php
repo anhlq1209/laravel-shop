@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Bill;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class BillController extends Controller
 {
     public function index()
     {
         $bills = Bill::all();
-        return view('admin.orders', [
-            'title' => 'Orders',
+        return view('admin.bill.index', [
+            'title' => 'Bills',
             'bills' => $bills
         ]);
     }

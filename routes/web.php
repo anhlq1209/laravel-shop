@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\CategoyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
@@ -49,9 +49,26 @@ Route::get('/logout', [AuthController::class, 'destroy']);
 // Admin
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+
     Route::get('/categories', [CategoyController::class, 'index'])->name('admin.category');
+    Route::prefix('category')->group(function () {
+        Route::get('/create', [CategoyController::class, 'create'])->name('admin.category.create');
+        Route::post('/store', [CategoyController::class, 'store'])->name('admin.category.store');
+        Route::get('/edit/{id}', [CategoyController::class, 'edit'])->name('admin.category.edit');
+        Route::post('/update/{id}', [CategoyController::class, 'edit'])->name('admin.category.update');
+        Route::post('/delete/{id}', [CategoyController::class, 'destry'])->name('admin.category.delete');
+    });
+
     Route::get('/products', [AdminProductController::class, 'index'])->name('admin.product');
-    Route::get('/orders', [OrderController::class, 'index'])->name('admin.order');
+    Route::prefix('product')->group(function () {
+        Route::get('/create', [AdminProductController::class, 'create'])->name('admin.product.create');
+        Route::post('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
+        Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
+        Route::post('/update/{id}', [AdminProductController::class, 'edit'])->name('admin.product.update');
+        Route::post('/delete/{id}', [AdminProductController::class, 'destry'])->name('admin.product.delete');
+    });
+
+    Route::get('/bills', [BillController::class, 'index'])->name('admin.bill');
     Route::get('/messages', [MessageController::class, 'index'])->name('admin.message');
     Route::get('/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
 });

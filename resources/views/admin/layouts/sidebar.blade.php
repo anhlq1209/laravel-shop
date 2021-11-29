@@ -59,10 +59,10 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="/admin/orders" class="nav-link {{ $title === 'Orders' ? 'active' : '' }}">
+					<a href="/admin/bills" class="nav-link {{ $title === 'Bills' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-file-invoice"></i>
 						<p>
-							Orders
+							Bills
 						</p>
 					</a>
 				</li>
