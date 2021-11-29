@@ -4,16 +4,28 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\productsController;
-use App\Http\Controllers\shoppingcartController;
-use App\Http\Controllers\shopdetailsController;
-use App\Http\Controllers\checkoutController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\LikesController;
 use Illuminate\Support\Facades\Route;
 
 
 // Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/product', [ProductController::class, 'index'])->name('contact');
 // End Page
+
+
+
+// User
+Route::get('/likes', [LikesController::class, 'index'])->name('likes');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('cart');
+// End User
 
 
 // Auth

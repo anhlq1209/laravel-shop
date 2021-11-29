@@ -1,5 +1,5 @@
 <!-- Hero Section Begin -->
-<section class="hero">
+<section class="hero hero-normal">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -10,7 +10,7 @@
                     </div>
                     <ul>
                         @foreach ($categories as $category)
-                            <li><a href="#">{{ $category['name'] }}</a></li>
+                            <li><a href="category/{{ $category['id'] }}">{{ $category['name'] }}</a></li>
                         @endforeach
                     </ul>
                 </div>

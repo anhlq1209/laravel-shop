@@ -18,7 +18,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $logged = Auth::check();
-        $categories = Category::all();
+        $this->logged = Auth::check();
+        $this->categories = Category::all();
     }
 }
