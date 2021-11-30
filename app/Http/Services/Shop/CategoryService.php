@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Services\User;
+namespace App\Http\Services\Shop;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 
-class UserService {
+class CategoryService {
 
     public function create($request) {
         try {
             Category::create([
-                'name' => (string) $request->input('name'),
-                'email' => (string) $request->input('email'),
-                'password' => (string) bcrypt($request->input('password'))
+                'name' => (string) $request->input('name')
             ]);
             
             Session::flash('success', 'Đăng ký thành viên thành công ;)');
