@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryFormRequest;
+use App\Http\Requests\Auth\RegisterFormRequest;
 use App\Http\Services\Shop\CategoryService;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -52,22 +53,15 @@ class CategoyController extends Controller
     }
 
     public function update($id, Request $request) {
-        if (Category::where('id', $id)->update(['name' => $request->input('name')])) {
-            Session::flash('success', 'Cập nhật thông tin Category thành công');
-            return redirect()->back();
-        }
         
-        Session::flash('error', 'Cập nhật thất bại');
-        return redirect()->back()->withInput();
     }
 
-    public function destroy($id) {
-        if (Category::where('id', $id)->delete()) {
-            Session::flash('success', 'Xóa Category thành công');
-            return true;
-        }
-        
-        Session::flash('error', 'Xóa thất bại');
-        return false;
+    public function destroy(Request $request) {
+        // $report = $request['id'];      
+
+        // Category::find($report);
+
+        // $report->delete();        
+        // $request->session()->flash('success', 'Delete successfully');
     }
 }
