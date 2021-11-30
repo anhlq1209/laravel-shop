@@ -1,7 +1,8 @@
 @extends('admin.main')
 
-@section('head')
-    <script src="../../template/js/my-script.js"></script>
+@section('footer')
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
+    <script src="/template/js/my-script.js"></script>
 @endsection
 
 @section('content')
@@ -22,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Product description</label>
-                                <textarea id="description" name="description" class="form-control" rows="5"></textarea>
+                                <textarea id="description" name="description" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Category</label>
@@ -35,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <input type="text" id="price" name="price" class="form-control">
+                                <input type="number" id="price" name="price" class="form-control">
                             </div>
                         </div>
                     <!-- /.card-body -->

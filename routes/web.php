@@ -55,8 +55,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [CategoyController::class, 'create'])->name('admin.category.create');
         Route::post('/store', [CategoyController::class, 'store'])->name('admin.category.store');
         Route::get('/edit/{id}', [CategoyController::class, 'edit'])->name('admin.category.edit');
-        Route::post('/update/{id}', [CategoyController::class, 'edit'])->name('admin.category.update');
-        Route::post('/delete/{id}', [CategoyController::class, 'destry'])->name('admin.category.delete');
+        Route::post('/update/{id}', [CategoyController::class, 'update'])->name('admin.category.update');
+        Route::post('/destroy/{id}', [CategoyController::class, 'destroy'])->name('admin.category.delete');
     });
 
     Route::get('/products', [AdminProductController::class, 'index'])->name('admin.product');
@@ -64,12 +64,13 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [AdminProductController::class, 'create'])->name('admin.product.create');
         Route::post('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
         Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
-        Route::post('/update/{id}', [AdminProductController::class, 'edit'])->name('admin.product.update');
-        Route::post('/delete/{id}', [AdminProductController::class, 'destry'])->name('admin.product.delete');
+        Route::post('/update/{id}', [AdminProductController::class, 'update'])->name('admin.product.update');
+        Route::post('/destroy/{id}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy');
     });
 
     Route::get('/bills', [BillController::class, 'index'])->name('admin.bill');
     Route::get('/messages', [MessageController::class, 'index'])->name('admin.message');
+    
     Route::get('/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
 });
 // End Admin

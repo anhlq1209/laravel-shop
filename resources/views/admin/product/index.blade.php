@@ -1,5 +1,13 @@
 @extends('admin.main')
 
+@section('head')
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+@endsection
+
+@section('footer')
+    <script src="/template/js/my-script.js"></script>
+@endsection
+
 @section('content')
     <!-- Main content -->
     <section class="content">
@@ -63,11 +71,10 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/admin/product/destroy/{{ $product['id'] }}">
-                                        <i class="fas fa-trash">
-                                        </i>
+                                    <button class="btn btn-danger btn-sm btn-del-pro" value="{{ $product['id'] }}">
+                                        <i class="fas fa-trash"></i>
                                         Delete
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
