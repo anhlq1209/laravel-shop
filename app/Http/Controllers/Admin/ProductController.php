@@ -58,7 +58,12 @@ class ProductController extends Controller
 
     public function update($id, Request $request) {
 
-        if (Product::where('id', $id)->update(['name' => $request->input('name')])) {
+        if (Product::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'category_id' => $request->input('category_id'),
+            'price' => $request->input('price')
+            ])) {
             Session::flash('success', 'Cập nhật thông tin Product thành công');
             return redirect()->back();
         }
