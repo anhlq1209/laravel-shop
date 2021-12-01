@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Product description</label>
-                                <textarea id="description" name="description" class="form-control" rows="10">{{ $product['description'] }}</textarea>
+                                <textarea id="description" name="description" class="form-control" rows="10">{!! $product['description'] !!}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Category</label>

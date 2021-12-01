@@ -38,11 +38,11 @@ class ProductController extends Controller
 
     public function store(ProductFormRequest $request) {
         if ($this->productService->create($request)) {
-            return redirect()->back();
+            return true;
         }
 
         Session::flash('error', 'Vui lòng nhập đủ thông tin Product');
-        return redirect()->back()->withInput();
+        return false;
     }
 
     public function edit($id) {
