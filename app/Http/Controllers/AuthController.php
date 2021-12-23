@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\RegisterFormRequest;
 use App\Http\Services\User\UserService;
+use App\Mail\VerifyEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -27,12 +29,14 @@ class AuthController extends Controller
     }
 
     public function attempt(Request $request) {
+
         $this->validate($request, [
             'email' => 'required|email:filter', 
             'password' => 'required'
         ]);
 
         $data = $request->only(['email', 'password']);
+        
         if (Auth::attempt([
             'email' => $data['email'],
             'password' => $data['password'],
@@ -41,12 +45,6 @@ class AuthController extends Controller
             
             return redirect()->route('home');
         
-        } elseif (Auth::attempt([
-            'email' => $data['email'],
-            'password' => $data['password'],
-            'roll' => 'admin'
-        ], $request->input('remember'))) {
-            return redirect()->route('admin');
         }
 
         Session::flash('error', 'Email hoặc mật khẩu không đúng!');
@@ -64,13 +62,34 @@ class AuthController extends Controller
     public function store(RegisterFormRequest $request)
     {
         if ($request->input('password') === $request->input('passwordRetype')) {
-            $this->userService->create($request);
+            $newUser = $this->userService->create($request);
+
+            $id = $newUser->id;
+            $code = uniqid();
+            $newUser->code = $code;
+            $newUser->save();
             
+            //  Send mail
+            $data = [
+                'name' => $request->input('name'),
+                'link' => route('verify-email', [
+                    'id' => $id,
+                    'code' => $code
+                ])
+            ];
+            Mail::to('anhlq1209@gmail.com')->send(new VerifyEmail($data));
+            
+            Session::flash('success', 'Email xác nhận đã được gửi đến địa chỉ email của bạn');
+
             return redirect()->back();
         }
 
         Session::flash('error', 'Thông tin không chính xác!');
         return redirect()->back()->withInput();
+    }
+
+    public function verifyEmail($id, $code) {
+
     }
 
     public function show() {
