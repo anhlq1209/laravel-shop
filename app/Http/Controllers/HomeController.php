@@ -9,13 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->logged = Auth::check();
+    }
+    
     public function index()
     {
         $products = Product::all();
+        $categories = Category::all();
 
         return view('home', [
             'title' => 'Home',
-            'categories' => $this->categories,
+            'categories' => $categories,
             'pproducts' => $products,
             'logged' => $this->logged
         ]);

@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
-class Cart extends Model
+class Bill extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +16,8 @@ class Cart extends Model
      */
     protected $fillable = [
         'user_id',
-        'count_items',
-        'total'
+        'total',
+        'note',
+        'status'
     ];
 }

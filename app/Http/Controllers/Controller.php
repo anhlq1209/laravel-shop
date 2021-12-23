@@ -13,12 +13,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected $categories;
     protected $logged;
 
-    public function __construct()
-    {
-        $this->logged = Auth::check();
-        $this->categories = Category::all();
-    }
 }

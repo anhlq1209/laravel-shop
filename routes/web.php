@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\CategoyController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\BillController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -31,6 +36,7 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('cart');
 // Auth
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login/attempt', [AuthController::class, 'attempt']);
+
 Route::get('/register', [AuthController::class, 'create'])->name('register');
 Route::post('/register/store', [AuthController::class, 'store']);
 
@@ -40,6 +46,31 @@ Route::get('/logout', [AuthController::class, 'destroy']);
 
 
 
-// ADMIN
+// Admin
+Route::prefix('admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
+    Route::get('/categories', [CategoyController::class, 'index'])->name('admin.category');
+    Route::prefix('category')->group(function () {
+        Route::get('/create', [CategoyController::class, 'create'])->name('admin.category.create');
+        Route::post('/store', [CategoyController::class, 'store'])->name('admin.category.store');
+        Route::get('/edit/{id}', [CategoyController::class, 'edit'])->name('admin.category.edit');
+        Route::post('/update/{id}', [CategoyController::class, 'update'])->name('admin.category.update');
+        Route::post('/destroy/{id}', [CategoyController::class, 'destroy'])->name('admin.category.delete');
+    });
+
+    Route::get('/products', [AdminProductController::class, 'index'])->name('admin.product');
+    Route::prefix('product')->group(function () {
+        Route::get('/create', [AdminProductController::class, 'create'])->name('admin.product.create');
+        Route::post('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
+        Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
+        Route::post('/update/{id}', [AdminProductController::class, 'update'])->name('admin.product.update');
+        Route::post('/destroy/{id}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy');
+    });
+
+    Route::get('/bills', [BillController::class, 'index'])->name('admin.bill');
+    Route::get('/messages', [MessageController::class, 'index'])->name('admin.message');
+    
+    Route::get('/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
+});
+// End Admin
