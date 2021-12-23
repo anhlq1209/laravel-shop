@@ -26,8 +26,13 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
-        var_dump($request->input());
+    public function store(ProductFormRequest $request) {
+        if ($this->productService->create($request)) {
+            return true;
+        }
+
+        Session::flash('error', 'Vui lòng nhập đủ thông tin Product');
+        return false;
     }
 
     public function edit($id) {
@@ -42,7 +47,18 @@ class ProductController extends Controller
     }
 
     public function update($id, Request $request) {
-        $product = Product::find($id);
+        if (Product::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'category_id' => $request->input('category_id'),
+            'price' => $request->input('price')
+            ])) {
+            Session::flash('success', 'Cập nhật thông tin Product thành công');
+            return redirect()->back();
+        }
+        
+        Session::flash('error', 'Cập nhật thất bại');
+        return redirect()->back()->withInput();
     }
 
     public function destroy(Request $request) {

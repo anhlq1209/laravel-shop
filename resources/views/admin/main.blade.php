@@ -14,7 +14,7 @@
             <img class="animation__shake" src="/template/admin/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
 
-        <div class="wrapper">
+        <div class="wrapper pb-3">
 
             @include('admin.layouts.navbar')
 
