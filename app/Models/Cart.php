@@ -18,6 +18,7 @@ class Cart extends Model
      */
     protected $fillable = [
         'user_id',
+        'count_items',
         'total'
     ];
 }

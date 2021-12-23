@@ -22,6 +22,7 @@ class Product extends Model
         'count_likes',
         'price',
         'reviews',
+        'featured',
         'category_id'
     ];
 }
