@@ -79,7 +79,7 @@ $(document).ready(function () {
         })
     }
 
-    async function addProduct(namePro = '', descriptionPro = '', categoryIdPro = 0, pricePro = 0, imageArr = []) {
+    async function addProduct(namePro = '', descriptionPro = '', categoryIdPro = -1, pricePro = -1, imageArr = []) {
         
         console.log('name: ', namePro);
         console.log('des: ', descriptionPro);
