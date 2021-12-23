@@ -3,22 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProductFormRequest;
-use App\Http\Services\Shop\ProductService;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
-    protected $productService;
-
-    public function __construct(ProductService $productService)
-    {
-        $this->productService = $productService;
-    }
-
     public function index()
     {
         $products = Product::all();
@@ -57,7 +47,6 @@ class ProductController extends Controller
     }
 
     public function update($id, Request $request) {
-
         if (Product::where('id', $id)->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -72,13 +61,12 @@ class ProductController extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function destroy($id) {
-        if (Product::where('id', $id)->delete()) {
-            Session::flash('success', 'Xóa Category thành công');
-            return true;
-        }
-        
-        Session::flash('error', 'Xóa thất bại');
-        return false;
+    public function destroy(Request $request) {
+        // $report = $request['id'];      
+
+        // Category::find($report);
+
+        // $report->delete();        
+        // $request->session()->flash('success', 'Delete successfully');
     }
 }
