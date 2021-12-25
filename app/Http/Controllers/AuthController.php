@@ -64,13 +64,19 @@ class AuthController extends Controller
     public function store(RegisterFormRequest $request)
     {
         if ($request->input('password') === $request->input('passwordRetype')) {
-            $this->userService->create($request);
+            if ($this->userService->create($request)) {
+                
+                return redirect()->back();
             
-            return redirect()->back();
+            }
         }
 
-        Session::flash('error', 'Thông tin không chính xác!');
+        // Session::flash('error', 'Thông tin không chính xác!');
         return redirect()->back()->withInput();
+    }
+
+    public function verify($id, $code) {
+        
     }
 
     public function show() {
