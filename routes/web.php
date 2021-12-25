@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\LikesController;
@@ -34,43 +35,17 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('cart');
 
 
 // Auth
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login/attempt', [AuthController::class, 'attempt']);
+Route::get('/login', [AuthController::class, 'index'])->name('show-form-login');
+Route::post('/login/attempt', [AuthController::class, 'attempt'])->name('login');
 
-Route::get('/register', [AuthController::class, 'create'])->name('register');
-Route::post('/register/store', [AuthController::class, 'store']);
+Route::get('/register', [AuthController::class, 'create'])->name('show-form-register');
+Route::post('/register/store', [AuthController::class, 'store'])->name('register');
 
-Route::get('/logout', [AuthController::class, 'destroy']);
+Route::get('verify/{id}/{code}', [AuthController::class, 'verify'])->name('verify');
+
+Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 // End Auth
 
-
-
-
-// Admin
-Route::prefix('admin')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-
-    Route::get('/categories', [CategoyController::class, 'index'])->name('admin.category');
-    Route::prefix('category')->group(function () {
-        Route::get('/create', [CategoyController::class, 'create'])->name('admin.category.create');
-        Route::post('/store', [CategoyController::class, 'store'])->name('admin.category.store');
-        Route::get('/edit/{id}', [CategoyController::class, 'edit'])->name('admin.category.edit');
-        Route::post('/update/{id}', [CategoyController::class, 'update'])->name('admin.category.update');
-        Route::post('/destroy/{id}', [CategoyController::class, 'destroy'])->name('admin.category.delete');
-    });
-
-    Route::get('/products', [AdminProductController::class, 'index'])->name('admin.product');
-    Route::prefix('product')->group(function () {
-        Route::get('/create', [AdminProductController::class, 'create'])->name('admin.product.create');
-        Route::post('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
-        Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
-        Route::post('/update/{id}', [AdminProductController::class, 'update'])->name('admin.product.update');
-        Route::post('/destroy/{id}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy');
-    });
-
-    Route::get('/bills', [BillController::class, 'index'])->name('admin.bill');
-    Route::get('/messages', [MessageController::class, 'index'])->name('admin.message');
-    
-    Route::get('/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
-});
-// End Admin
+// Test
+Route::get('test', [TestController::class, 'index'])->name('test');
+// End Test
